@@ -16,10 +16,62 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <h1>Welcome to Prayers website</h1>
-        <p>This prayers site!</p>
-    </main>
+    <!-- Headers for different types of prayers -->
+    <nav id="prayerHeaders">
+        <div class="header-item" onclick="loadPrayerList('Prayer1')">Prayer1</div>
+        <div class="header-item" onclick="loadPrayerList('Prayer2')">Prayer2</div>
+        <div class="header-item" onclick="loadPrayerList('Prayer3')">Prayer3</div>
+    </nav>
+
+    <!-- Dynamic sections -->
+    <section id="prayerList">
+        <h2>Prayer List</h2>
+        <ul></ul>
+    </section>
+
+    <section id="prayerContent">
+        <h2>Prayer Content</h2>
+        <p>Select a prayer to view its content.</p>
+    </section>
+
+    <script>
+        // Mock data for prayers
+        const prayers = {
+            Prayer1: [
+                { name: "Morning Prayer", content: "Thank you, Lord, for a new day. Amen." },
+                { name: "Evening Prayer", content: "Thank you, Lord, for a day well spent. Amen." }
+            ],
+            Prayer2: [
+                { name: "Healing Prayer", content: "Lord, grant healing and peace. Amen." },
+                { name: "Forgiveness Prayer", content: "Lord, help me forgive and be forgiven. Amen." }
+            ],
+            Prayer3: [
+                { name: "Gratitude Prayer", content: "Thank you for all the blessings, Lord. Amen." },
+                { name: "Protection Prayer", content: "Lord, keep us safe from harm. Amen." }
+            ]
+        };
+
+        // Function to load prayer list based on header click
+        function loadPrayerList(prayerType) {
+            const prayerList = document.querySelector("#prayerList ul");
+            prayerList.innerHTML = ""; // Clear existing prayers
+
+            if (prayers[prayerType]) {
+                prayers[prayerType].forEach((prayer, index) => {
+                    const li = document.createElement("li");
+                    li.textContent = prayer.name;
+                    li.onclick = () => loadPrayerContent(prayer.content);
+                    prayerList.appendChild(li);
+                });
+            }
+        }
+
+        // Function to load the selected prayer's content
+        function loadPrayerContent(content) {
+            const prayerContent = document.querySelector("#prayerContent p");
+            prayerContent.textContent = content;
+        }
+    </script>
     <footer>
         <p>© 2024 My Website</p>
     </footer>
