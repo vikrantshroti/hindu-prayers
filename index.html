@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prayers Pages Site</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <header>
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+            <ul id="categoryNav" class="category-nav"></ul>
         </nav>
     </header>
-    <!-- Headers for different types of prayers -->
-    <nav id="prayerHeaders">
-        <div class="header-item" onclick="loadPrayerList('Prayer1')">Prayer1</div>
-        <div class="header-item" onclick="loadPrayerList('Prayer2')">Prayer2</div>
-        <div class="header-item" onclick="loadPrayerList('Prayer3')">Prayer3</div>
-    </nav>
-
     <!-- Dynamic sections -->
     <section id="prayerList">
         <h2>Prayer List</h2>
@@ -34,46 +25,49 @@
         <p>Select a prayer to view its content.</p>
     </section>
 
+    <script src="prayers.js"></script>
     <script>
-        // Mock data for prayers
-        const prayers = {
-            Prayer1: [
-                { name: "Morning Prayer", content: "Thank you, Lord, for a new day. Amen." },
-                { name: "Evening Prayer", content: "Thank you, Lord, for a day well spent. Amen." }
-            ],
-            Prayer2: [
-                { name: "Healing Prayer", content: "Lord, grant healing and peace. Amen." },
-                { name: "Forgiveness Prayer", content: "Lord, help me forgive and be forgiven. Amen." }
-            ],
-            Prayer3: [
-                { name: "Gratitude Prayer", content: "Thank you for all the blessings, Lord. Amen." },
-                { name: "Protection Prayer", content: "Lord, keep us safe from harm. Amen." }
-            ]
-        };
+        // Dynamically add prayer categories to header
+        function renderCategoryNav() {
+            const categoryNav = document.getElementById('categoryNav');
+            categoryNav.innerHTML = '';
+            Object.keys(window.prayers).forEach(category => {
+                const li = document.createElement('li');
+                li.className = 'category-item';
+                li.textContent = category;
+                li.onclick = () => loadPrayerList(category);
+                categoryNav.appendChild(li);
+            });
+        }
 
-        // Function to load prayer list based on header click
         function loadPrayerList(prayerType) {
             const prayerList = document.querySelector("#prayerList ul");
-            prayerList.innerHTML = ""; // Clear existing prayers
-
-            if (prayers[prayerType]) {
-                prayers[prayerType].forEach((prayer, index) => {
+            prayerList.innerHTML = "";
+            if (window.prayers[prayerType]) {
+                window.prayers[prayerType].forEach((prayer) => {
                     const li = document.createElement("li");
                     li.textContent = prayer.name;
                     li.onclick = () => loadPrayerContent(prayer.content);
                     prayerList.appendChild(li);
                 });
             }
+            document.querySelector("#prayerContent p").textContent = "Select a prayer to view its content.";
         }
 
-        // Function to load the selected prayer's content
         function loadPrayerContent(content) {
             const prayerContent = document.querySelector("#prayerContent p");
             prayerContent.textContent = content;
+        }
+
+        // Initialize UI
+        window.onload = function () {
+            renderCategoryNav();
+            loadPrayerList(Object.keys(window.prayers)[0]);
         }
     </script>
     <footer>
         <p>© 2024 My Website</p>
     </footer>
 </body>
+
 </html>

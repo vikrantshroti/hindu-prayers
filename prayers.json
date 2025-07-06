@@ -1,0 +1,14 @@
+{
+  "Daily": [
+    { "name": "Morning Prayer", "content": "Thank you, Lord, for a new day. Amen." },
+    { "name": "Evening Prayer", "content": "Thank you, Lord, for a day well spent. Amen." }
+  ],
+  "Healing": [
+    { "name": "Healing Prayer", "content": "Lord, grant healing and peace. Amen." },
+    { "name": "Forgiveness Prayer", "content": "Lord, help me forgive and be forgiven. Amen." }
+  ],
+  "Gratitude": [
+    { "name": "Gratitude Prayer", "content": "Thank you for all the blessings, Lord. Amen." },
+    { "name": "Protection Prayer", "content": "Lord, keep us safe from harm. Amen." }
+  ]
+}
