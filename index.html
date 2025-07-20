@@ -15,15 +15,17 @@
         </nav>
     </header>
     <!-- Dynamic sections -->
-    <section id="prayerList">
-        <h2>Prayer List</h2>
-        <ul></ul>
-    </section>
+    <div class="container">
+        <section id="prayerList">
+            <h2>Prayer List</h2>
+            <ul></ul>
+        </section>
 
     <section id="prayerContent">
         <h2>Prayer Content</h2>
         <p>Select a prayer to view its content.</p>
     </section>
+    </div>
 
     <script src="prayers.js"></script>
     <script>
@@ -35,7 +37,17 @@
                 const li = document.createElement('li');
                 li.className = 'category-item';
                 li.textContent = category;
-                li.onclick = () => loadPrayerList(category);
+                li.onclick = () => {
+                    // Remove 'selected' class from other category items
+                    document.querySelectorAll('.category-item').forEach(item => item.classList.remove('selected'));
+                    // Add 'selected' class to the clicked category item
+                    li.classList.add('category-item');
+                    li.classList.add('selected');
+                    loadPrayerList(category);
+                };
+                if (categoryNav.children.length === 0) {
+                    li.classList.add('selected');
+                }
                 categoryNav.appendChild(li);
             });
         }
@@ -47,7 +59,13 @@
                 window.prayers[prayerType].forEach((prayer) => {
                     const li = document.createElement("li");
                     li.textContent = prayer.name;
-                    li.onclick = () => loadPrayerContent(prayer.content);
+                     li.onclick = () => {
+                        // Remove 'selected' class from other prayer items
+                        document.querySelectorAll('#prayerList li').forEach(item => item.classList.remove('selected'));
+                        // Add 'selected' class to the clicked prayer item
+                        li.classList.add('selected');
+                        loadPrayerContent(prayer.content);
+                    };
                     prayerList.appendChild(li);
                 });
             }

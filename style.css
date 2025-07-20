@@ -1,27 +1,33 @@
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  margin: 0;
   padding: 0;
-  background: #f4f4f4;
-  color: #333;
+  background-color: #fafafa; /* Grey 50 */
+  color: #212121; /* Grey 900 */
+  margin: 0;
 }
 
 header {
-  background: #333;
+  background-color: #3f51b5; /* Indigo 500 */
   color: #fff;
-  padding: 10px 0;
+      padding: 10px 0;
 }
 
 header ul {
   list-style: none;
   padding: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
 }
 
 header li {
   margin: 0 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
 }
 
 header a {
@@ -32,43 +38,96 @@ header a {
 #prayerHeaders {
   display: flex;
   justify-content: space-around;
-  background-color: #f1f1f1;
+  background-color: #e8eaf6; /* Indigo 50 */
   padding: 1rem 0;
   margin: 0;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 1px solid #303f9f; /* Indigo 700 */
 }
-.header-item {
+.category-item {
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #7986cb; /* Indigo 300 */
   border-radius: 5px;
-  background-color: #fff;
-  transition: background-color 0.3s;
+  background-color:  #3f51b5; /* Indigo 500 */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
 }
+
 .header-item:hover {
-  background-color: #e0f7fa;
+  background-color: #bbdefb; /* Indigo 100 */
 }
-#prayerList,
-#prayerContent {
+
+.category-item.selected {
+  background-color: #7986cb; /* Indigo 300 */
+  color: white;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.category-item.selected {
+  transition: transform 0.3s ease-in-out;
+}
+#prayerList {
+  width: 25%;
   margin: 1rem;
   padding: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #7986cb; /* Indigo 300 */
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
 }
+
+#prayerContent {
+  width: 70%;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #7986cb; /* Indigo 300 */
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+}
+
 #prayerList ul,
 #prayerContent p {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
+
+.container {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  #prayerList {
+    width: 100%;
+  }
+
+  #prayerContent {
+    width: 100%;
+  }
+}
 #prayerList li {
   cursor: pointer;
   padding: 0.5rem;
   border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s, color 0.3s;
 }
 #prayerList li:hover {
   background-color: #f1f1f1;
+}
+
+#prayerList li.selected {
+  background-color: #3f51b5; /* Indigo 500 */
+  color: white;
 }
 
 footer {
@@ -78,6 +137,6 @@ footer {
   right: 0;
   text-align: center;
   padding: 10px;
-  background: #333;
+  background-color: #3f51b5; /* Indigo 500 */
   color: #fff;
 }
