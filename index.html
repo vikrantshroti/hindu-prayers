@@ -44,18 +44,12 @@
                 <button class="lang-btn" data-lang="english">English</button>
             </div>
             <div class="prayer-text">
-                <p id="prayerText">Select a prayer to view its content.</p>
+                <p id="prayerText">किसी प्रार्थना की विषय-वस्तु देखने के लिए उसे चुनें</p>
             </div>
         </section>
     </div>
 
     <script type="module">
-        // import { dailyPrayers } from './data/daily.js';
-        // import { mantrasPrayers } from './data/mantras.js';
-        // import { stotrasPrayers } from './data/stotras.js';
-        // import { festivalsPrayers } from './data/festivals.js';
-        // import { healingPrayers } from './data/healing.js';
-        // import { kidsPrayers } from './data/kids.js';
         // Global variables
         let currentCategory = 'Daily';
         let currentPrayer = null;
@@ -80,12 +74,12 @@
             const kidsPrayers = await kidsResponse.json();
 
             prayers = {
-                "Daily": dailyPrayers,
-                "Mantras": mantrasPrayers,
-                "Stotras & Chalisa": stotrasPrayers,
-                "Festivals": festivalsPrayers,
-                "Healing & Gratitude": healingPrayers,
-                "Kids": kidsPrayers,
+                "दैनिक प्रार्थना": dailyPrayers,
+                "मंत्र": mantrasPrayers,
+                "स्तोत्र और चालीसा": stotrasPrayers,
+                "त्योहार": festivalsPrayers,
+                "स्वास्थ्यप्राद और आभार": healingPrayers,
+                "बच्चों के लिए": kidsPrayers,
             };
 
             loadPrayerList(currentCategory);
@@ -160,8 +154,8 @@
             }
 
             // Reset prayer content
-            document.getElementById('prayerTitle').textContent = 'Prayer Content';
-            document.getElementById('prayerText').textContent = 'Select a prayer to view its content.';
+            document.getElementById('prayerTitle').textContent = 'प्रार्थना पाठ';
+            document.getElementById('prayerText').textContent = 'किसी प्रार्थना की विषय-वस्तु देखने के लिए उसे चुनें।';
         }
 
         function updatePrayerContent(prayer) {
@@ -213,7 +207,7 @@
         }
     </script>
     <footer>
-        <p>© 2025 My Website</p>
+        <p>© 2025 TechVik</p>
     </footer>
 </body>
 
