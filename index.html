@@ -65,12 +65,12 @@
         let prayers = {};
 
         async function loadPrayers() {
-            const dailyResponse = await fetch('./daily.json');
-            const mantrasResponse = await fetch('./mantras.json');
-            const stotrasResponse = await fetch('./stotras.json');
-            const festivalsResponse = await fetch('./festivals.json');
-            const healingResponse = await fetch('./healing.json');
-            const kidsResponse = await fetch('./kids.json');
+            const dailyResponse = await fetch('./data/daily.json');
+            const mantrasResponse = await fetch('./data/mantras.json');
+            const stotrasResponse = await fetch('./data/stotras.json');
+            const festivalsResponse = await fetch('./data/festivals.json');
+            const healingResponse = await fetch('./data/healing.json');
+            const kidsResponse = await fetch('./data/kids.json');
 
             const dailyPrayers = await dailyResponse.json();
             const mantrasPrayers = await mantrasResponse.json();
