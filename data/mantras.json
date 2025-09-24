@@ -1,41 +1,41 @@
 {
-  "Ganesh Mantra (Full)": {
+  "गणेश मंत्र": {
     "sanskrit": "ॐ गं गणपतये नमः।\nवक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।\nनिर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥",
     "transliteration": "Om Gam Ganapataye Namah.\nVakratunda Mahākāya Sūryakoṭi Samaprabha,\nNirvighnaṁ Kuru Me Deva Sarvakāryeṣu Sarvadā.",
     "english": "Salutations to Lord Ganesha. O large-bodied one with a curved trunk, shining like a million suns, please remove all obstacles from my endeavors, always.",
     "audio": "ganesh_mantra_full.mp3"
   },
-  "Shiva Mantra (Full)": {
+  "शिव मंत्र": {
     "sanskrit": "ॐ नमः शिवाय।\nनागेन्द्रहाराय त्रिलोचनाय भस्माङ्गरागाय महेश्वराय।\nनित्याय शुद्धाय दिगम्बराय तस्मै न काराय नमः शिवाय॥",
     "transliteration": "Om Namah Śivāya.\nNāgendrahārāya Trilocanāya Bhasmāṅgarāgāya Maheśvarāya,\nNityāya Śuddhāya Digambarāya Tasmai Na Kārāya Namah Śivāya.",
     "english": "I bow to Lord Shiva, the auspicious one, who wears serpents as garlands, has three eyes, is adorned with holy ash, ever pure, the great Lord clothed in space itself.",
     "audio": "shiva_mantra_full.mp3"
   },
-  "Maha Mrityunjaya Mantra (Full)": {
+  "महामृत्युंजय मंत्र": {
     "sanskrit": "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्।\nउर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय माऽमृतात्॥",
     "transliteration": "Om Tryambakaṁ Yajāmahe Sugandhiṁ Puṣṭivardhanam,\nUrvārukamiva Bandhanān Mṛtyor Mukṣīya Mā'mṛtāt.",
     "english": "We worship the three-eyed Lord Shiva, who nourishes and sustains all beings. May He free us from the bondage of worldly attachments and death, bestowing us with immortality.",
     "audio": "maha_mrityunjaya_mantra_full.mp3"
   },
-  "Vishnu Mantra (Full)": {
+  "विष्णु मंत्र": {
     "sanskrit": "ॐ नमो भगवते वासुदेवाय।\nशान्ताकारं भुजगशयनं पद्मनाभं सुरेशं।\nविश्वाधारं गगनसदृशं मेघवर्णं शुभाङ्गम्॥",
     "transliteration": "Om Namo Bhagavate Vāsudevāya.\nŚāntākāraṁ Bhujagaśayanaṁ Padmanābhaṁ Sureśam,\nViśvādhāraṁ Gaganasadṛśaṁ Meghavarṇaṁ Śubhāṅgam.",
     "english": "Salutations to Lord Vishnu, the preserver. He is of peaceful form, resting on the serpent, lotus-naveled, the Lord of all gods, support of the universe, vast like the sky, cloud-hued and auspicious in form.",
     "audio": "vishnu_mantra_full.mp3"
   },
-  "Durga Mantra (Full)": {
+  "दुर्गा मंत्र": {
     "sanskrit": "ॐ दुं दुर्गायै नमः।\nया देवी सर्वभूतेषु शक्तिरूपेण संस्थिता।\nनमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥",
     "transliteration": "Om Dum Durgāyai Namah.\nYā Devī Sarvabhūteṣu Śaktirūpeṇa Saṁsthitā,\nNamastasyai Namastasyai Namastasyai Namo Namah.",
     "english": "Salutations to Goddess Durga. We bow repeatedly to the Divine Mother who resides in all beings in the form of power and energy.",
     "audio": "durga_mantra_full.mp3"
   },
-  "Hanuman Mantra (Full)": {
+  "हनुमान मंत्र": {
     "sanskrit": "ॐ हं हनुमते नमः।\nमनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम्।\nवातात्मजं वानरयूथमुख्यं श्रीरामदूतं शरणं प्रपद्ये॥",
     "transliteration": "Om Haṁ Hanumate Namah.\nManojavaṁ Mārutatulyavegaṁ Jitendriyaṁ Buddhimatāṁ Variṣṭham,\nVātātmajaṁ Vānarayūthamukhyaṁ Śrīrāmadūtaṁ Śaraṇaṁ Prapadye.",
     "english": "Salutations to Lord Hanuman. I take refuge in Hanuman, son of the Wind God, swift as the mind, fast as the wind, master of the senses, chief among the wise, the foremost among monkeys, and the great messenger of Lord Rama.",
     "audio": "hanuman_mantra_full.mp3"
   },
-  "Gayatri Mantra (Full)": {
+  "गायत्री मंत्र": {
     "sanskrit": "ॐ भूर्भुवः स्वः।\nतत्सवितुर्वरेण्यं।\nभर्गो देवस्य धीमहि।\nधियो यो नः प्रचोदयात्॥",
     "transliteration": "Om Bhur Bhuvaḥ Svaḥ,\nTat Savitur Vareṇyaṁ,\nBhargo Devasya Dhīmahi,\nDhiyo Yo Naḥ Pracodayāt.",
     "english": "We meditate upon the divine radiance of Savitur, the Sun God. May that supreme light inspire and enlighten our intellect.",
