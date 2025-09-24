@@ -1,0 +1,26 @@
+{
+  "Morning Prayer": {
+    "sanskrit":
+      "कराग्रे वसate लक्ष्मीः करमध्ये सरस्वती।\nकरमूले स्थितो ब्रह्मा प्रभाते करदर्शनम्॥",
+    "transliteration":
+      "Karāgre vasate Lakṣhmīḥ karamadhye Sarasvatī,\nKaramūle sthito Brahmā prabhāte karadarśanam.",
+    "english":
+      "On the tips of my fingers resides Goddess Lakshmi, in the middle resides Saraswati, at the base resides Brahma. Thus, I look at my hands every morning.",
+    "audio": "morning_prayer.mp3"
+  },
+  "Evening Prayer": {
+    "sanskrit":
+      "राम रामेति रामेति रमे रामे मनोरमे।\nसहस्रनाम तत्तुल्यं रामनाम वरानने॥",
+    "transliteration":
+      "Rāma Rāmeti Rāmeti Rame Rāme Manorame,\nSahasranāma Tattulyaṁ Rāmanāma Varānane.",
+    "english":
+      "Chanting the name of Lord Rama is equal to chanting the thousand names of Lord Vishnu.",
+    "audio": "evening_prayer.mp3"
+  },
+  "Bhojan Mantra (Before Meals)": {
+    "sanskrit": "अन्नदाता सुखी भव।",
+    "transliteration": "Annadātā sukhī bhava.",
+    "english": "May the one who provides this food be happy.",
+    "audio": "bhojan_mantra.mp3"
+  }
+}

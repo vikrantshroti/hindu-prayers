@@ -5,15 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prayers Pages Site</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <header>
         <nav>
-            <ul id="categoryNav" class="category-nav"></ul>
+            <ul id="categoryNav" class="category-nav">
+                <li class="category-item selected" data-category="Daily">Daily</li>
+                <li class="category-item" data-category="Mantras">Mantras</li>
+                <li class="category-item" data-category="Stotras & Chalisa">Stotras & Chalisa</li>
+                <li class="category-item" data-category="Festivals">Festivals</li>
+                <li class="category-item" data-category="Healing & Gratitude">Healing & Gratitude</li>
+                <li class="category-item" data-category="Kids">Kids</li>
+            </ul>
         </nav>
     </header>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search prayers...">
+    </div>
+
     <!-- Dynamic sections -->
     <div class="container">
         <section id="prayerList">
@@ -21,66 +36,180 @@
             <ul></ul>
         </section>
 
-    <section id="prayerContent">
-        <h2>Prayer Content</h2>
-        <p>Select a prayer to view its content.</p>
-    </section>
+        <section id="prayerContent">
+            <h2 id="prayerTitle">Prayer Content</h2>
+            <div class="language-toggle">
+                <button class="lang-btn selected" data-lang="sanskrit">Sanskrit</button>
+                <button class="lang-btn" data-lang="transliteration">Transliteration</button>
+                <button class="lang-btn" data-lang="english">English</button>
+            </div>
+            <div class="prayer-text">
+                <p id="prayerText">Select a prayer to view its content.</p>
+            </div>
+        </section>
     </div>
 
-    <script src="prayers.js"></script>
-    <script>
-        // Dynamically add prayer categories to header
-        function renderCategoryNav() {
-            const categoryNav = document.getElementById('categoryNav');
-            categoryNav.innerHTML = '';
-            Object.keys(window.prayers).forEach(category => {
-                const li = document.createElement('li');
-                li.className = 'category-item';
-                li.textContent = category;
-                li.onclick = () => {
-                    // Remove 'selected' class from other category items
-                    document.querySelectorAll('.category-item').forEach(item => item.classList.remove('selected'));
-                    // Add 'selected' class to the clicked category item
-                    li.classList.add('category-item');
-                    li.classList.add('selected');
-                    loadPrayerList(category);
-                };
-                if (categoryNav.children.length === 0) {
-                    li.classList.add('selected');
-                }
-                categoryNav.appendChild(li);
-            });
+    <script type="module">
+        // import { dailyPrayers } from './data/daily.js';
+        // import { mantrasPrayers } from './data/mantras.js';
+        // import { stotrasPrayers } from './data/stotras.js';
+        // import { festivalsPrayers } from './data/festivals.js';
+        // import { healingPrayers } from './data/healing.js';
+        // import { kidsPrayers } from './data/kids.js';
+        // Global variables
+        let currentCategory = 'Daily';
+        let currentPrayer = null;
+        let currentLanguage = 'sanskrit';
+
+        // Initialize a global prayers object with imported data
+        let prayers = {};
+
+        async function loadPrayers() {
+            const dailyResponse = await fetch('./daily.json');
+            const mantrasResponse = await fetch('./mantras.json');
+            const stotrasResponse = await fetch('./stotras.json');
+            const festivalsResponse = await fetch('./festivals.json');
+            const healingResponse = await fetch('./healing.json');
+            const kidsResponse = await fetch('./kids.json');
+
+            const dailyPrayers = await dailyResponse.json();
+            const mantrasPrayers = await mantrasResponse.json();
+            const stotrasPrayers = await stotrasResponse.json();
+            const festivalsPrayers = await festivalsResponse.json();
+            const healingPrayers = await healingResponse.json();
+            const kidsPrayers = await kidsResponse.json();
+
+            prayers = {
+                "Daily": dailyPrayers,
+                "Mantras": mantrasPrayers,
+                "Stotras & Chalisa": stotrasPrayers,
+                "Festivals": festivalsPrayers,
+                "Healing & Gratitude": healingPrayers,
+                "Kids": kidsPrayers,
+            };
+
+            loadPrayerList(currentCategory);
         }
 
-        function loadPrayerList(prayerType) {
+        // Set up event listeners for navigation items
+        function setupNavigation() {
+            const categoryItems = document.querySelectorAll('.category-item');
+            categoryItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    // Remove 'selected' class from all items
+                    categoryItems.forEach(el => el.classList.remove('selected'));
+                    // Add 'selected' class to clicked item
+                    this.classList.add('selected');
+                    // Load prayer list for the selected category
+                    const category = this.getAttribute('data-category');
+                    currentCategory = category;
+                    loadPrayerList(category);
+                });
+            });
+
+            // Set up language toggle
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    langButtons.forEach(el => el.classList.remove('selected'));
+                    this.classList.add('selected');
+                    currentLanguage = this.getAttribute('data-lang');
+                    if (currentPrayer) {
+                        updatePrayerContent(currentPrayer);
+                    }
+                });
+            });
+
+            // Set up search functionality
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function () {
+                const searchTerm = this.value.toLowerCase();
+                if (searchTerm.length > 2) {
+                    searchPrayers(searchTerm);
+                } else if (searchTerm.length === 0) {
+                    loadPrayerList(currentCategory);
+                }
+            });
+
+        }
+
+        function loadPrayerList(category) {
             const prayerList = document.querySelector("#prayerList ul");
-            prayerList.innerHTML = "";
-            if (window.prayers[prayerType]) {
-                window.prayers[prayerType].forEach((prayer) => {
+
+            prayerList.innerHTML = '';
+
+            if (prayers[category]) {
+                Object.keys(prayers[category]).forEach(prayerName => {
                     const li = document.createElement("li");
-                    li.textContent = prayer.name;
-                     li.onclick = () => {
+                    li.textContent = prayerName;
+                    li.onclick = () => {
                         // Remove 'selected' class from other prayer items
                         document.querySelectorAll('#prayerList li').forEach(item => item.classList.remove('selected'));
                         // Add 'selected' class to the clicked prayer item
                         li.classList.add('selected');
-                        loadPrayerContent(prayer.content);
+                        // Load prayer content
+                        const prayer = prayers[category][prayerName];
+                        prayer.name = prayerName;
+                        currentPrayer = prayer;
+                        updatePrayerContent(prayer);
                     };
+
                     prayerList.appendChild(li);
+                    // console.log('Appended prayer list item:', prayerName);
                 });
             }
-            document.querySelector("#prayerContent p").textContent = "Select a prayer to view its content.";
+
+            // Reset prayer content
+            document.getElementById('prayerTitle').textContent = 'Prayer Content';
+            document.getElementById('prayerText').textContent = 'Select a prayer to view its content.';
         }
 
-        function loadPrayerContent(content) {
-            const prayerContent = document.querySelector("#prayerContent p");
-            prayerContent.textContent = content;
+        function updatePrayerContent(prayer) {
+            document.getElementById('prayerTitle').textContent = prayer.name;
+
+            // Update text based on selected language
+            const prayerText = document.getElementById('prayerText');
+            prayerText.textContent = prayer[currentLanguage];
+
+        }
+
+        function searchPrayers(searchTerm) {
+            const prayerList = document.querySelector("#prayerList ul");
+            prayerList.innerHTML = "";
+
+            // Search across all categories
+            Object.keys(prayers).forEach(category => {
+                Object.keys(prayers[category]).forEach(prayerName => {
+                    const prayer = prayers[category][prayerName];
+
+                    // Check if search term is in prayer name or content
+                    if (prayerName.toLowerCase().includes(searchTerm) ||
+                        prayer.sanskrit.toLowerCase().includes(searchTerm) ||
+                        prayer.transliteration.toLowerCase().includes(searchTerm) ||
+                        prayer.english.toLowerCase().includes(searchTerm)) {
+
+                        const li = document.createElement("li");
+                        li.textContent = prayerName + ' (' + category + ')';
+                        li.onclick = () => {
+                            // Remove 'selected' class from other prayer items
+                            document.querySelectorAll('#prayerList li').forEach(item => item.classList.remove('selected'));
+                            // Add 'selected' class to the clicked prayer item
+                            li.classList.add('selected');
+                            // Load prayer content
+                            prayer.name = prayerName;
+                            currentPrayer = prayer;
+                            updatePrayerContent(prayer);
+                        };
+                        prayerList.appendChild(li);
+                    }
+                });
+            });
         }
 
         // Initialize UI
         window.onload = function () {
-            renderCategoryNav();
-            loadPrayerList(Object.keys(window.prayers)[0]);
+            setupNavigation();
+            loadPrayers(); // Initial load
         }
     </script>
     <footer>

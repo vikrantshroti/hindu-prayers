@@ -1,142 +1,247 @@
+/* Material Design Colors */
+:root {
+  --primary-color: #2196f3; /* Blue 500 */
+  --primary-light: #bbdefb; /* Blue 100 */
+  --primary-dark: #1976d2; /* Blue 700 */
+  --accent-color: #ff4081; /* Pink A200 */
+  --text-primary: #212121; /* Grey 900 */
+  --text-secondary: #757575; /* Grey 600 */
+  --divider-color: #bdbdbd; /* Grey 400 */
+  --background-color: #fafafa; /* Grey 50 */
+  --card-color: #ffffff; /* White */
+  --error-color: #f44336; /* Red 500 */
+}
+
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  padding: 0;
-  background-color: #fafafa; /* Grey 50 */
-  color: #212121; /* Grey 900 */
+  font-family: "Roboto", sans-serif;
   margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    135deg,
+    var(--primary-light) 0%,
+    var(--background-color) 100%
+  );
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background 0.3s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
-  background-color: #3f51b5; /* Indigo 500 */
-  color: #fff;
-      padding: 10px 0;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
 }
 
-header ul {
+.category-nav {
+  display: flex;
   list-style: none;
   padding: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   margin: 0;
+  flex-wrap: wrap;
 }
 
-header li {
-  margin: 0 10px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 1.25rem;
-}
-
-header a {
-  color: #fff;
-  text-decoration: none;
-}
-
-#prayerHeaders {
-  display: flex;
-  justify-content: space-around;
-  background-color: #e8eaf6; /* Indigo 50 */
-  padding: 1rem 0;
-  margin: 0;
-  border-bottom: 1px solid #303f9f; /* Indigo 700 */
-}
 .category-item {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
   cursor: pointer;
-  border: 1px solid #7986cb; /* Indigo 300 */
-  border-radius: 5px;
-  background-color:  #3f51b5; /* Indigo 500 */
-  transition: background-color 0.3s, color 0.3s, transform 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  color: white;
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-.header-item:hover {
-  background-color: #bbdefb; /* Indigo 100 */
+.category-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .category-item.selected {
-  background-color: #7986cb; /* Indigo 300 */
-  color: white;
-  transition: background-color 0.3s ease-in-out;
+  background-color: white;
+  color: var(--primary-color);
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.category-item.selected {
-  transition: transform 0.3s ease-in-out;
-}
-#prayerList {
-  width: 25%;
-  margin: 1rem;
+.search-container {
   padding: 1rem;
-  border: 1px solid #7986cb; /* Indigo 300 */
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
+  background-color: var(--card-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
 }
 
-#prayerContent {
-  width: 70%;
-  margin: 1rem;
-  padding: 1rem;
-  border: 1px solid #7986cb; /* Indigo 300 */
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
+#searchInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--divider-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-#prayerList ul,
-#prayerContent p {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+#searchInput:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-light);
+  outline: none;
 }
 
 .container {
   display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
+#prayerList {
+  flex: 1;
+  min-width: 250px;
+  background-color: var(--card-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-right: 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+#prayerList h2 {
+  color: var(--primary-dark);
+  margin-top: 0;
+  border-bottom: 2px solid var(--primary-light);
+  padding-bottom: 0.5rem;
+}
+
+#prayerList ul {
+  list-style: none;
+  padding: 0;
+}
+
+#prayerList li {
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+#prayerList li:hover {
+  background-color: var(--primary-light);
+  border-left-color: var(--primary-color);
+}
+
+#prayerList li.selected {
+  background-color: var(--primary-light);
+  border-left-color: var(--primary-color);
+  font-weight: 500;
+}
+
+#prayerContent {
+  flex: 2;
+  min-width: 300px;
+  background-color: var(--card-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+#prayerContent h2 {
+  color: var(--primary-dark);
+  margin-top: 0;
+  border-bottom: 2px solid var(--primary-light);
+  padding-bottom: 0.5rem;
+}
+
+.language-toggle {
+  display: flex;
+  margin: 1rem 0;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.lang-btn {
+  flex: 1;
+  padding: 0.5rem;
+  background-color: var(--background-color);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Roboto", sans-serif;
+}
+
+.lang-btn:hover {
+  background-color: var(--primary-light);
+}
+
+.lang-btn.selected {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+}
+
+.prayer-text {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: var(--background-color);
+  border-radius: 4px;
+  border-left: 4px solid var(--primary-color);
+}
+
+#playButton {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#playButton:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+  background-color: var(--primary-dark);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto; /* Pushes the footer to the bottom */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
   }
 
   #prayerList {
+    margin-right: 0;
+    margin-bottom: 1rem;
     width: 100%;
   }
 
   #prayerContent {
     width: 100%;
   }
-}
-#prayerList li {
-  cursor: pointer;
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
-  transition: background-color 0.3s, color 0.3s;
-}
-#prayerList li:hover {
-  background-color: #f1f1f1;
-}
 
-#prayerList li.selected {
-  background-color: #3f51b5; /* Indigo 500 */
-  color: white;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: 10px;
-  background-color: #3f51b5; /* Indigo 500 */
-  color: #fff;
+  .category-nav {
+    justify-content: center;
+  }
 }
